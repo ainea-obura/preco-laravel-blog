@@ -28,4 +28,6 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('blog/create', [BlogController::class, 'store']);
     Route::get('blogs/all', [BlogController::class, 'index']);
+
+    Route::post('comment/create', [AssignController::class, 'store']);
 });
