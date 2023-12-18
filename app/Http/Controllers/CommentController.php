@@ -12,7 +12,6 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -20,7 +19,6 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -28,7 +26,25 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'blog_id' => 'required|exists:blog,id',
+            'comment' => 'required',
+         ]);
+
+        // If validation fails, return an error response
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        // Create a new sblog
+        $comment = Comment::create([
+            'blog_id' => auth()->user()->id,
+            'comment' => $request->input('comment'),
+        ]);
+
+        // Return a success response with the newly created sblog data
+        // return response()->json(['sblog' => $sblog], 201);
+        return response()->json(['comment' => $comment], 200);
     }
 
     /**
@@ -36,7 +52,6 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
     }
 
     /**
@@ -44,7 +59,6 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
     }
 
     /**
@@ -52,7 +66,6 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
     }
 
     /**
@@ -60,6 +73,5 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
     }
 }
