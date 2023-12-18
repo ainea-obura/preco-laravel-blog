@@ -39,7 +39,7 @@ class CommentController extends Controller
 
         // Create a new sblog
         $comment = Comment::create([
-            'blog_id' => auth()->user()->id,
+            'blog_id' => $request->input('comment'),
             'comment' => $request->input('comment'),
         ]);
 
