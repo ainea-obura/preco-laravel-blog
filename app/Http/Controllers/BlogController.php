@@ -13,7 +13,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blog = auth()->user()->blog()->latest()->get();
+        $blog = auth()->user()->blog()->with('comments')->latest()->get();
 
         return response()->json(['blog' => $blog], 200);
     }
