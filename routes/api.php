@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,5 +30,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('blog/create', [BlogController::class, 'store']);
     Route::get('blogs/all', [BlogController::class, 'index']);
 
-    Route::post('comment/create', [AssignController::class, 'store']);
+    Route::post('comment/create', [CommentController::class, 'store']);
 });
